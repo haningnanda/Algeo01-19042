@@ -1,14 +1,13 @@
-## Getting Started
+## TUGAS BESAR ALJABAR LINIER DAN GEOMETRI
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Kelompok 53 :
+1. Haning Nanda Hapsari (13519042)
+2. Farhan Fadilla Rafi (13519204)
+3. Awwala Nisa Kamila (13519208)
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+<h2>Spesifikasi Tugas<h2>
+Membuat Program Java yang meliputi:
+1. Menghitung solusi SPL dengan metode eliminasi Gauss, metode Eliminasi Gauss-Jordan, metode matriks balikan, dan kaidah Cramer (kaidah Cramer khusus untuk SPL dengan n peubah dan n persamaan).
+2. Menyelesaikan persoalan interpolasi dan regresi linier.
+3. Menghitung matriks balikan
+4. Menghitung determinan matriks dengan berbagai metode (reduksi baris dan ekspansi kofaktor).
