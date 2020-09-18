@@ -29,9 +29,12 @@ public class main {
 }
 class Program{
     public void splgauss(){
-        int matriks;
+        int baris;
+        int kolom;
         Scanner menprog = new Scanner (System.in);
-        System.out.println("Masukkan ukuran matriks : ");
-        matriks = menprog.nextInt();
+        System.out.println("Masukkan jumlah baris : ");
+        baris = menprog.nextInt();
+        System.out.println("Masukkan jumlah kolom : ");
+        kolom = menprog.nextInt();
     }
 }
