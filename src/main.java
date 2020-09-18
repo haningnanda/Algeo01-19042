@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        int i = 0;
+        while (i==0){
         System.out.println("MENU");
         System.out.println("Pilih Program yang Ingin Anda Jalankan:");
         System.out.println("1. Sistem Persamaan Linear");
@@ -14,17 +16,35 @@ public class main {
         int pilihan;
         System.out.println("Pilih Menu : ");
         pilihan = menu.nextInt();
+        while (pilihan<1 || pilihan>6) {
+            System.out.println("Pilih Menu : ");
+            pilihan = menu.nextInt();
+        }
         if (pilihan==1) {
             System.out.println("Pilih Metode yang Ingin Anda Gunakan :");
-            System.out.println("1. Metode eliminasi Gauss\n2. Metode eliminasi Gauss-Jordan\n3. Metode matriks balikan\n4. Kaidah Cramer");
+            System.out.println("1. Metode eliminasi Gauss\n2. Metode eliminasi Gauss-Jordan\n3. Metode matriks balikan\n4. Kaidah Cramer\n5. Kembali");
             int pilihan1;
             System.out.println("Pilih Metode :");
             pilihan1 = menu.nextInt();
             if (pilihan1==1) {
                 Program menu_1_1= new Program();
                 menu_1_1.splgauss();
+                System.out.println("Apakah Anda ingin melakukan Operasi Lagi? (Y/N)");
+                String pilihan1_1;
+                Scanner 
+                pilihan1_1 = menu.nextLine();
+                if (pilihan1_1=="Y"){
+                    i=0;
+                } i=1;
+            }
+            else if (pilihan1==5){
+                i = 0;
             }
         }
+        else if (pilihan==6){
+            i = 1;
+        }
+    }
     } 
 }
 class Program{
