@@ -29,19 +29,19 @@ public class main {
             if (pilihan1==1) {
                 Program menu_1_1= new Program();
                 menu_1_1.splgauss();
-                System.out.println("Apakah Anda ingin melakukan Operasi Lagi? (Y/N)");
-                String pilihan1_1;
-                Scanner 
-                pilihan1_1 = menu.nextLine();
-                if (pilihan1_1=="Y"){
+                System.out.println("Apakah Anda ingin melakukan Operasi Lagi?\n1. Ya\n2. Tidak");
+                int pilihan1_1;1
+                System.out.println("Pilihan :");
+                pilihan1_1 = menu.nextInt();
+                if (pilihan1_1==1){
                     i=0;
-                } i=1;
+                } else{i=1;}
             }
             else if (pilihan1==5){
                 i = 0;
             }
         }
-        else if (pilihan==6){
+        else{
             i = 1;
         }
     }
