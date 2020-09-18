@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class function {
+public class main {
     public static void main(String[] args) throws Exception {
         System.out.println("MENU");
         System.out.println("Pilih Program yang Ingin Anda Jalankan:");
@@ -14,9 +14,9 @@ public class function {
         int pilihan;
         System.out.println("Pilih Menu : ");
         pilihan = menu.nextInt();
-        if (pilihan==1) {1
+        if (pilihan==1) {
             System.out.println("Pilih Metode yang Ingin Anda Gunakan :");
-            System.out.println("1. Metode eliminasi Gauss\n2. Metode eliminasi Gauss-Jordan\n3. Metode matriks balikan\n4.Kaidah Cramer");
+            System.out.println("1. Metode eliminasi Gauss\n2. Metode eliminasi Gauss-Jordan\n3. Metode matriks balikan\n4. Kaidah Cramer");
         }
 
     }
