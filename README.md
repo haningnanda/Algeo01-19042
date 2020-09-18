@@ -7,7 +7,7 @@ Kelompok 53 :
 
 ## Spesifikasi
 Membuat Program Java yang meliputi:
-<ol>Menghitung solusi SPL dengan metode eliminasi Gauss, metode Eliminasi Gauss-Jordan, metode matriks balikan, dan kaidah Cramer (kaidah Cramer khusus untuk SPL dengan n peubah dan n persamaan). <ol>
-<ol>Menyelesaikan persoalan interpolasi dan regresi linier.<ol>
-<ol>Menghitung matriks balikan.<ol>
-<ol>Menghitung determinan matriks dengan berbagai metode (reduksi baris dan ekspansi kofaktor).<ol>
+<li>Menghitung solusi SPL dengan metode eliminasi Gauss, metode Eliminasi Gauss-Jordan, metode matriks balikan, dan kaidah Cramer (kaidah Cramer khusus untuk SPL dengan n peubah dan n persamaan). <li>
+<li>Menyelesaikan persoalan interpolasi dan regresi linier.<li>
+<li>Menghitung matriks balikan.<li>
+<li>Menghitung determinan matriks dengan berbagai metode (reduksi baris dan ekspansi kofaktor).<li>
