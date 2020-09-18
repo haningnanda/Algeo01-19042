@@ -30,7 +30,7 @@ public class main {
                 Program menu_1_1= new Program();
                 menu_1_1.splgauss();
                 System.out.println("Apakah Anda ingin melakukan Operasi Lagi?\n1. Ya\n2. Tidak");
-                int pilihan1_1;1
+                int pilihan1_1;
                 System.out.println("Pilihan :");
                 pilihan1_1 = menu.nextInt();
                 if (pilihan1_1==1){
@@ -49,12 +49,12 @@ public class main {
 }
 class Program{
     public void splgauss(){
-        int baris;
-        int kolom;
+        int n;
+        int m;
         Scanner menprog = new Scanner (System.in);
         System.out.println("Masukkan jumlah baris : ");
-        baris = menprog.nextInt();
+        n = menprog.nextInt();
         System.out.println("Masukkan jumlah kolom : ");
-        kolom = menprog.nextInt();
+        m = menprog.nextInt();
     }
 }
