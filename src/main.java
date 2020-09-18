@@ -18,6 +18,10 @@ public class main {
             System.out.println("Pilih Metode yang Ingin Anda Gunakan :");
             System.out.println("1. Metode eliminasi Gauss\n2. Metode eliminasi Gauss-Jordan\n3. Metode matriks balikan\n4. Kaidah Cramer");
         }
-
+    }
+}
+class Program{
+    public void splgauss(){
+        System.out.println("Hello Haning");
     }
 }
