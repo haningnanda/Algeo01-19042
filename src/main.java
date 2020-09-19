@@ -26,35 +26,7 @@ public class main {
             int pilihan1;
             System.out.println("Pilih Metode :");
             pilihan1 = menu.nextInt();
-            if (pilihan1==1) {
-                Program menu_1_1= new Program();
-                menu_1_1.splgauss();
-                System.out.println("Apakah Anda ingin melakukan Operasi Lagi?\n1. Ya\n2. Tidak");
-                int pilihan1_1;
-                System.out.println("Pilihan :");
-                pilihan1_1 = menu.nextInt();
-                if (pilihan1_1==1){
-                    i=0;
-                } else{i=1;}
-            }
-            else if (pilihan1==5){
-                i = 0;
-            }
         }
-        else{
-            i = 1;
-        }
-    }
-    } 
-}
-class Program{
-    public void splgauss(){
-        int n;
-        int m;
-        Scanner menprog = new Scanner (System.in);
-        System.out.println("Masukkan jumlah baris : ");
-        n = menprog.nextInt();
-        System.out.println("Masukkan jumlah kolom : ");
-        m = menprog.nextInt();
+        } 
     }
 }
