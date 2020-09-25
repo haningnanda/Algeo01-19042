@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
+splgauss splgauss_pro = new splgauss();
         int i = 0;
         while (i==0){
             System.out.println("MENU");
@@ -26,6 +27,9 @@ public class main {
                 int pilihan1;
                 System.out.println("Pilih Metode :");
                 pilihan1 = menu.nextInt();
+                if(pilihan1==1){
+                    splgauss_pro.splgauss_main();
+                }
             }
             else if(pilihan==2){
                 System.out.println("Isi disini");
