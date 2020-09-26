@@ -71,6 +71,9 @@ public class splgauss {
                     while (k<m){
                         if (spl[i][k]!=0){
                             spl1[i][j] = spl[i][j]/spl[i][k];
+                            if(spl1[i][j]==-0){
+                                spl1[i][j]=0;
+                            }
                             k=m;
                         }
                         else{
