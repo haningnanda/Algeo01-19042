@@ -100,7 +100,6 @@ public class splgauss {
         System.out.println("Masukkan jumlah kolom : ");
         m = prog.nextInt();
         float[][] spl = new float [n][m];
-        float[][] tukar = new float [n][m];
         float[][] spl1 = new float [n][m];
         int [] hitung = new int [n];
         for(int i = 0; i<n; i++){
