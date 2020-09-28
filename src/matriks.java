@@ -74,6 +74,7 @@ public class matriks {
 	public void printMatriks(){
 		/* PRINT MATRIKS*/
 		int i, j;
+
         System.out.println("");
         System.out.println("Matriks " + m + " x " + n + " yang dibuat : ");
         for (i = 0; i < m; i++){
@@ -97,105 +98,96 @@ public class matriks {
         }
 	}
 
-	// Gauss
-	public void Gauss(){
-		int i, j, c = 0, next = 0;
-		boolean found = false;
-
-		for (i = 0; i < m; i++){
-			if (matriks[i][i + next] == 0){
-				found = false;
-				for (j = 0; i < m; i++){
-					if (matriks[j][i] != 0){
-						for (i = 0; i < n; i++){
-							matriks[0][i] = matriks[i][i];
-							matriks[i][i] = matriks[j][i];
-							matriks[j][i] = matriks[0][i];
-						}
-						found = true;
-						break;
-					}
-				}
-				if (found == false){
-					next++;
-					i--;
-					continue;
-				}
-			}
-			for (i = 0; i < n; i++){
-				matriks[i][i] *= (1/matriks[i][i + next]); 
-				for (j = i + 1; j < m; j++){
-					matriks[j][i] += (matriks[i][i] * (-1 * matriks[j][i + next] / matriks[i][i + next]));
-				}
-			}
-			for (i = 0; i < m; i++){
-				for (j = 0; j < n; j++){
-					if (matriks[i][j] != 0){
-						c = j;
-						break;
-					}
-				}
-				if (c == n-1){
-					for (i = 0; i < n; i++){
-						matriks[i][i] *= (1/matriks[i][c]);
-					}
-				}
-			}
-		}
-
-		System.out.println("");
-        System.out.println("Matriks " + m + " x " + n + " yang dibuat : ");
-        for (i = 0; i < m; i++){
-            for (j = 0; j < n; j++){
-                System.out.print(matriks[i][j] + " ");
-            }
-            System.out.println("");
-        }
-	}
-
-	//Gauss Jordan cara 1
-
-
 	//GaussJordanFixBgt
 	public void eliminasiGaussJordan(){
 		int i, j, k;
 		int NR = 1; //NextRow
 		boolean found = false;
-		float det = 0;
 		float temp, MB; // matriks baru
 
+		System.out.println("");
+        System.out.println("Matriks setelah di reduksi : ");
 		for (i = 0; i < n; i++){
 			if (matriks[i][i] == 0){
-				while (((i + NR) < n) && (matriks[i + NR][i] == 0) && (found == false)){
-					NR++;
-					if (((i + NR) == n) && (found = false)){
+				for (j = i + 1; j < n; j++){
+					if ((matriks[j][i] != 0) && (found == false)){
+						for (k = 0; k < n; k++){
+							temp = matriks[i][k];
+							matriks[i][k] = matriks[j][k];
+							matriks[j][k] = temp;
+						}
 						found = true;
-					}
-					else{
-						continue;
-					}
-
-					for (k = 0; k < n; k++){
-						temp = matriks[i][k];
-						matriks[i][k] = matriks[i + NR][k];
-						matriks[i + NR][k] = temp;
 					}
 				}
 			}
 			for (j = 0; j < n; j++){
 				if (i != j){
-					MB = matriks[j][i] / matriks[i][i];
-
-					for (k = 0; k < n; k++){
-						matriks[j][k] -= (matriks[i][k] * MB);
+					if (matriks[j][i] != 0){
+						MB = matriks[j][i] / matriks[i][i];
+						
+						for (k = 0; k < n; k++){
+							matriks[j][k] -= (matriks[i][k] * MB);						
+						}
 					}
 				}
+				System.out.print(matriks[i][j] + " ");
 			}
+			System.out.println(" ");
 		}
 	}
 
-	// Interpolasi
+	public void solusiEiminasiGaussJordan(){
 
+	}
+
+
+	// Determinan FIX BGT
+	public void determinan(){
+		int i, j, k;
+		boolean found = false;
+		float swap = 1;
+		float temp, MB; // matriks baru
+
+		System.out.println("");
+        System.out.println("Matriks setelah di reduksi : ");
+		for (i = 0; i < n; i++){
+			if (matriks[i][i] == 0){
+				for (j = i + 1; j < n; j++){
+					if ((matriks[j][i] != 0) && (found == false)){
+						for (k = 0; k < n; k++){
+							temp = matriks[i][k];
+							matriks[i][k] = matriks[j][k];
+							matriks[j][k] = temp;
+						}
+						swap *= -1;
+						found = true;
+					}
+				}
+			}
+			for (j = 0; j < n; j++){
+				if (i != j){
+					if (matriks[j][i] != 0){
+						MB = matriks[j][i] / matriks[i][i];
+						
+						for (k = 0; k < n; k++){
+							matriks[j][k] -= (matriks[i][k] * MB);						
+						}
+					}
+				}
+				System.out.print(matriks[i][j] + " ");
+			}
+			System.out.println(" ");
+		}
+        
+        System.out.println("");
+        for (i = 0; i < n; i++){
+			swap *= matriks[i][i];
+		}
+		System.out.print("Hasil Determinan : " + (int) swap);
+	}
+
+
+	// Interpolasi belom selese
 	public void Interpolasi(){
 		int n, x, y; // n(x,y)
 		int xt; // nilai yang akan ditaksir
@@ -221,7 +213,7 @@ public class matriks {
 		// 
 
 		// HASIL INTERPOLASI
-		Gauss(); //apa gaus jordan yak
+		eliminasiGaussJordan(); //apa gaus jordan yak
 		for (i = 0; i < n; i++){
 			if (matriks[i][n] == 0){
 				continue;
@@ -254,65 +246,5 @@ public class matriks {
 		//System.out.println("Hasil Interpolasi : ", )
 	}
 
-	// Determinan FIX BGT
-
-	public void determinan(){
-		int i, j, k;
-		int NR = 1; //NextRow
-		boolean found = false;
-		int swap = 1;
-		float temp, MB; // matriks baru
-
-		System.out.println("");
-        System.out.println("Matriks setelah di reduksi : ");
-		for (i = 0; i < n; i++){
-			if (matriks[i][i] == 0){
-				for (j = i + 1; j < n; j++){
-					if (matriks[j][i] != 0){
-						for (k = 0; k < n; k++){
-							temp = matriks[i][k];
-							matriks[i][k] = matriks[j][k];
-							matriks[j][k] = temp;
-						}
-						swap *= -1;
-						break;
-					}
-				}
-				/*
-				while (((i + NR) < n) && (matriks[i + NR][i] == 0) && (found == false)){
-					NR++;
-					if (((i + NR) == n) && (found = false)){
-						found = true;
-					}
-					else{
-						continue;
-					}
-
-					for (k = 0; k < n; k++){
-						temp = matriks[i][k];
-						matriks[i][k] = matriks[i + NR][k];
-						matriks[i + NR][k] = temp;
-					}
-					swap *= -1;
-				}
-				*/
-			}
-			for (j = 0; j < n; j++){
-				if (i != j){
-					MB = matriks[j][i] / matriks[i][i];
-
-					for (k = 0; k < n; k++){
-						matriks[j][k] -= (matriks[i][k] * MB);						
-					}
-				System.out.print(matriks[i][j] + " ");
-			}
-			System.out.println(" ");
-		}
-        
-        System.out.println("");
-        for (i = 0; i < n; i++){
-			swap *= matriks[i][i];
-		}
-		System.out.print("Hasil Determinan : " + swap);
-	}
+	
 }
