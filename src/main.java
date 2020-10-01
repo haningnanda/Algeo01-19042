@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
 splgauss splgauss_pro = new splgauss();
+splcramer splcramer_pro = new splcramer();
         int i = 0;
         while (i==0){
             System.out.println("MENU");
@@ -30,18 +31,9 @@ splgauss splgauss_pro = new splgauss();
                 if(pilihan1==1){
                     splgauss_pro.splgauss_main();
                 }
-            }
-            else if(pilihan==2){
-                System.out.println("Isi disini");
-            }
-            else if(pilihan==3){
-                System.out.println("isi disini");
-            }
-            else if(pilihan==4){
-                System.out.println("isi yuk");
-            }
-            else if(pilihan==5){
-                System.out.println("cek dicoba");
+                else if (pilihan1 == 4){
+                    splcramer_pro.splcramer_main();
+                }
             }
         } 
     }
