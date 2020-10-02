@@ -3,7 +3,8 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Splgauss {
+public class Regresi {
+
     float [][] M1;
     public void inputfile(){
         Scanner nama = new Scanner(System.in);
@@ -42,6 +43,21 @@ public class Splgauss {
         }
     }
 
+    float sumcol(float[][] matriks, int j, int n){
+        float count = 0;
+        for(int i=0; i<n; i++){
+            count += matriks[i][j];
+        }
+        return count;
+    }
+    float kalicol(float [][] matriks, int n, int a, int b){
+        int count = 0;
+        for(int i = 0; i<n; i++){
+            count += matriks[i][a]*matriks[i][b];
+        }
+        return count;
+    }
+
     static int hitbrs (float[][]spl, int n, int m, int i){
         int count = 0;
         int k =0;
@@ -56,14 +72,18 @@ public class Splgauss {
         }
         return count;
     }
+    
+
     void Pengurangan(float [][] spl,  int m, int n, int hitung[]){
         for(int i=n-1; i>0; i--){
                 if(hitung[i]==hitung[i-1]&&hitung[i]!=m-1){
                     float faktor = spl[i][hitung[i]]/spl[i-1][hitung[i]];
                     for(int a = hitung[i]; a<m; a++){
                         spl[i][a] = spl[i][a]-(spl[i-1][a]*faktor);
-                    }  
+                    }
+                    
                 }   
+            
         }
     }
     void Pengurutan(float [][] spl, int[] hitung, int n, int m){
@@ -71,6 +91,7 @@ public class Splgauss {
         boolean flag = true;   
         int temp;   
         float temp1;
+
         while ( flag )
         {
                 flag= false;    
@@ -113,6 +134,7 @@ public class Splgauss {
                             k++;
                         }
                     }
+ 
                 }
             }
         }
@@ -125,42 +147,7 @@ public class Splgauss {
             }
         }
     }
-    void prin(float [][] a, int n, int m){
-        int i, j, k, x;
-        float temp;
-        for (i = 1; i < n; i++) {
-            j = 0;
-            while (j < m-1 && a[i][j] == 0 ){
-                    j++;
-            }
-            if (j < m-1 ){
-                for (k = i-1; k >= 0; k--){
-                    temp = a[k][j];
-                    for (x = j; x < m; x++){
-                            a[k][x] = a[k][x] - (temp*a[i][x]);
-                    }
-                }
-            }
-        }
-        for (i =0; i < n; i++) {
-            j = 0;
-            while (j < m-1 && a[i][j] == 0){
-                j++;
-            }
-            if (j < m-1){
-                System.out.printf("%c = %f", (j+65), a[i][m-1]);
-                for (k = j+1; k < m-1; k++){
-                    if (a[i][k] > 0){
-                        System.out.printf(" - %f%c", a[i][k], (k+65));
-                    } else if (a[i][k] < 0){
-                        System.out.printf(" + %f%c", a[i][k], (k+65));
-                    }
-                }
-                System.out.println("\n");
-            }
-        }
-    }
-
+    
     void notparam (float[][] matsumcol, int n, float[] eks){
         for(int i = n-1; i>=0; i--){
             eks[i] = matsumcol[i][n];
@@ -171,60 +158,137 @@ public class Splgauss {
         }
     }
 
-    public void splgauss_txt(){
+    public void regresi_text(){
+        Scanner scan = new Scanner(System.in);
         inputfile();
-        int m= M1[0].length;
         int n = M1.length;
-        int [] hitung = new int[m];
-        for(int i =0; i<n; i++){
-            hitungbaris(hitung, n, m, M1);
-             Pengurutan(M1, hitung, n, m);
-             Pengurangan(M1, m, n, hitung);
-         }
-         for(int i = 0; i<n; i++){
-             hitungbaris(hitung, n, m, M1);
-         }
-         for(int i = 0; i<n; i++){
-             Pengurutan(M1, hitung, n, m);
-         }
-         float [][] spl1 = new float[n][m];
-         for(int i = 0; i<n; i++){
-             Bagidepan(M1, spl1, n, m);
-         }
-         prin(spl1, n, m);
-    }
-    
-
-    public void gauss() {
-        Scanner prog = new Scanner(System.in);
-        int n;
-        int m;
-        System.out.println("Masukkan jumlah baris : ");
-        n = prog.nextInt();
-        System.out.println("Masukkan jumlah kolom : ");
-        m = prog.nextInt();
-        float[][] spl = new float [n][m];
-        for(int i = 0; i<n; i++){
-            for(int j = 0; j<m; j++){
-                spl[i][j]=prog.nextFloat();
+        int m = M1[0].length;
+        float [] cari = new float [m-1];
+        for (int i=0; i<m-1; i++){
+            cari[i] = scan.nextFloat();
+        }
+        float [][] matsumcol = new float[m][m+1];
+        matsumcol[0][0] = n;
+        for(int j=0; j<m;j++){
+            matsumcol[0][j+1] = sumcol(M1, j, n);
+        }
+        for(int i=1; i<m; i++){
+                matsumcol[i][0] = matsumcol[0][i];       
+        }
+        for(int j=0; j<m-1; j++){
+            matsumcol[j+1][m] = kalicol(M1, n, j, m-1);
+        }
+        for(int j=0; j<m-1;j++){
+            for(int k=0; k<m-1; k++){
+                    matsumcol[j+1][k+1] = kalicol(M1, n, j, k);           
             }
         }
-        int [] hitung = new int [n];
+        for(int j=0; j<m;j++){
+            for(int k=0; k<m+1; k++){
+                System.out.printf("%f ", matsumcol[j][k]);
+            }
+            System.out.println("\n");
+        }
+        int [] hitung = new int [m];
         for(int i =0; i<n; i++){
-           hitungbaris(hitung, n, m, spl);
-            Pengurutan(spl, hitung, n, m);
-            Pengurangan(spl, m, n, hitung);
+            hitungbaris(hitung, m, m+1, matsumcol);
+             Pengurutan(matsumcol, hitung, m, m+1);
+             Pengurangan(matsumcol, m+1, m, hitung);
+         }
+         for(int i = 0; i<n; i++){
+             hitungbaris(hitung, m, m+1, matsumcol);
+         }
+         for(int i = 0; i<n; i++){
+             Pengurutan(matsumcol, hitung, m, m+1);
+         }
+         float [][] mat = new float[m][m+1];
+         for(int i = 0; i<n; i++){
+             Bagidepan(matsumcol, mat, m, m+1);
+         }
+         float[] eks = new float [m];
+         notparam(matsumcol, m, eks);
+         for(int i =0; i<m; i++){
+         }
+        float count =eks[0];
+        for (int i=0; i<m-1; i++){
+            count = count + (eks[i+1]*cari[i]);
         }
-        for(int i = 0; i<n; i++){
-            hitungbaris(hitung, n, m, spl);
+        System.out.printf("%f", count);
+    }
+
+    public void regresi_main(){
+        Scanner scan = new Scanner(System.in);
+        int n, m;
+        n = scan.nextInt();
+        m = scan.nextInt();
+        float [][] matriks = new float [n][m];
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                matriks[i][j]=scan.nextInt();
+            }
         }
-        for(int i = 0; i<n; i++){
-            Pengurutan(spl, hitung, n, m);
+        float [] cari = new float [m-1];
+        for (int i=0; i<m-1; i++){
+            cari[i] = scan.nextFloat();
         }
-        float [][] spl1 = new float[n][m];
-        for(int i = 0; i<n; i++){
-            Bagidepan(spl, spl1, n, m);
+
+        float [][] matsumcol = new float[m][m+1];
+        matsumcol[0][0] = n;
+        for(int j=0; j<m;j++){
+            matsumcol[0][j+1] = sumcol(matriks, j, n);
         }
-        prin(spl1, n, m);
+        
+        for(int i=1; i<m; i++){
+                matsumcol[i][0] = matsumcol[0][i];
+                
+        }
+
+        for(int j=0; j<m-1; j++){
+            matsumcol[j+1][m] = kalicol(matriks, n, j, m-1);
+        }
+        
+        for(int j=0; j<m-1;j++){
+            for(int k=0; k<m-1; k++){
+                    matsumcol[j+1][k+1] = kalicol(matriks, n, j, k);           
+            }
+        }
+
+        for(int j=0; j<m;j++){
+            for(int k=0; k<m+1; k++){
+                System.out.printf("%f ", matsumcol[j][k]);
+            }
+            System.out.println("\n");
+        }
+
+        int [] hitung = new int [m];
+        for(int i =0; i<n; i++){
+            hitungbaris(hitung, m, m+1, matsumcol);
+             Pengurutan(matsumcol, hitung, m, m+1);
+             Pengurangan(matsumcol, m+1, m, hitung);
+         }
+ 
+         for(int i = 0; i<n; i++){
+             hitungbaris(hitung, m, m+1, matsumcol);
+         }
+ 
+         for(int i = 0; i<n; i++){
+             Pengurutan(matsumcol, hitung, m, m+1);
+         }
+ 
+         float [][] mat = new float[m][m+1];
+         for(int i = 0; i<n; i++){
+             Bagidepan(matsumcol, mat, m, m+1);
+         }
+
+         float[] eks = new float [m];
+         notparam(matsumcol, m, eks);
+         for(int i =0; i<m; i++){
+         }
+
+        float count =eks[0];
+        for (int i=0; i<m-1; i++){
+            count = count + (eks[i+1]*cari[i]);
+        }
+        System.out.printf("%f", count);
     }
 }
