@@ -289,6 +289,6 @@ public class Regresi {
         for (int i=0; i<m-1; i++){
             count = count + (eks[i+1]*cari[i]);
         }
-        System.out.printf("%f", count);
+        System.out.printf("%f \n", count);
     }
 }
